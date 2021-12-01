@@ -27,5 +27,6 @@
         android:hint="验证码">
     </EditText>
 
-    
+<!--    验证码-->
+
 </LinearLayout>
