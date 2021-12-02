@@ -21,7 +21,8 @@ import okhttp3.Response;
 public class httpUtils {
 
     public static String TAG = "httpUtils";
-    public void post(String url,String requestBodyString){
+
+    public static void post(String url,String requestBodyString){
         MediaType mediaType = MediaType.parse("text/x-markdown; charset=utf-8");
 
         String requestBody = requestBodyString;

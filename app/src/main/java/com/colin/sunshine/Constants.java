@@ -7,10 +7,16 @@ package com.colin.sunshine;
  */
 public class Constants {
     //API访问路径
-    public static String api_main = "https://api.sunofbeach.net";
-    //图灵验证码
-    public static String api_yzm = api_main + "/uc/ut/captcha?code=随机数";
-    //登录 请求方式：Post query参数：captcha 前面图片验证码内容
-    public static String api_login = api_main + "/uc/user/login/";
+    public static String api_main = "https://api.sunofbeach.net/shop";
+
+    //获取发现页的分类
+    public static String api_discovery = api_main + "/discovery/categories";
+
+
+    //根据发现页分类ID获取分类内容 接口：/discovery/{materialId}/{page}
+    public static String api_materialId(String materialId ,String page){
+        return api_main + "/discovery?materialId=" + materialId +"&page=" + page;
+
+    }
 
 }
