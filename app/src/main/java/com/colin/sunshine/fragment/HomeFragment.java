@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.colin.sunshine.R;
+import com.colin.sunshine.utils.httpUtils;
 
 /**
  * Date:2021-12-02
@@ -23,7 +24,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        httpUtils.getDiscovery();
     }
 
     @Nullable

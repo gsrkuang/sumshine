@@ -2,7 +2,16 @@ package com.colin.sunshine.utils;
 
 import android.util.Log;
 
+import com.colin.sunshine.Constants;
+import com.colin.sunshine.model.CategoriesBean;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -49,4 +58,100 @@ public class httpUtils {
             }
         });
     }
+
+    public static void get(String url ,String value){
+
+        OkHttpClient okHttpClient = new OkHttpClient();
+
+        Request request=new Request.Builder()
+                .get()
+                .url(url)
+                .build();
+
+        Call call = okHttpClient.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                Log.e("onResponse:",response.message());
+                //该方法的返回值是response，所以我们可以通过response拿到相关信息。
+                String string = response.body().string();//想拿到字符串，可以从response-body-string
+                /*String a="111";*/
+                Log.e("string = " , string);
+                /*L.e(a);
+                 */
+            }
+        });
+
+    }
+
+
+    //获取发现页的的分类标签
+
+    public static void getDiscovery(){
+
+        OkHttpClient okHttpClient = new OkHttpClient();
+
+        Request request=new Request.Builder()
+                .get()
+                .url(Constants.api_discovery)
+                .build();
+
+        Call call = okHttpClient.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                Log.e("onResponse:",response.message());
+                //该方法的返回值是response，所以我们可以通过response拿到相关信息。
+                String string = response.body().string();//想拿到字符串，可以从response-body-string
+                /*String a="111";*/
+                Log.e("string = " , string);
+                /*L.e(a);
+                 */
+
+                //json解析
+                try {
+                    JSONObject jsonObject = new JSONObject(string);
+
+                    JSONArray jsonArray = jsonObject.getJSONArray("data");
+
+                    CategoriesBean categoriesBean = new CategoriesBean();
+                    categoriesBean.setCode(jsonObject.getInt("code"));
+                    categoriesBean.setMessage(jsonObject.getString("message"));
+                    categoriesBean.setSuccess(jsonObject.getBoolean("success"));
+
+                    List<CategoriesBean.DataBean> list = new ArrayList<>();
+
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                        CategoriesBean.DataBean dataBean = new CategoriesBean.DataBean();
+                        dataBean.setId(jsonObject1.getInt("id"));
+                        dataBean.setTitle(jsonObject1.getString("title"));
+                        list.add(dataBean);
+                    }
+
+                    categoriesBean.setData(list);
+
+
+
+                    System.out.println("categoriesBean = " + categoriesBean);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+
+    }
+
 }
