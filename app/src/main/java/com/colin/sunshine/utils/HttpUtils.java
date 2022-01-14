@@ -26,10 +26,24 @@ import okhttp3.Response;
  * Date:2021-12-01
  * Time:17:00
  * author:colin
+ *
+ * 封装成单例对象，方便使用 by——colin
  */
-public class httpUtils {
+public class HttpUtils {
 
-    public static String TAG = "httpUtils";
+    public static String TAG = "HttpUtils";
+
+    public HttpUtils mHttpUtilsInstance;
+
+    public OkHttpClient mOkHttpClient;
+
+    public HttpUtils getInstance(){
+        if (mHttpUtilsInstance == null){
+            mHttpUtilsInstance = new HttpUtils();
+        }
+        return mHttpUtilsInstance;
+    }
+
 
     public static void post(String url,String requestBodyString){
         MediaType mediaType = MediaType.parse("text/x-markdown; charset=utf-8");
