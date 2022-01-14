@@ -1,23 +1,25 @@
-package com.colin.sunshine;
+package com.colin.sunshine.ui.activity;
 
 import android.os.Bundle;
-import android.view.MenuItem;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.colin.sunshine.R;
+import com.colin.sunshine.fragment.ArticleFragment;
 import com.colin.sunshine.fragment.HomeFragment;
-import com.colin.sunshine.fragment.SelectedFragment;
+import com.colin.sunshine.fragment.MyFragment;
+import com.colin.sunshine.fragment.WallPaperFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
 public class MainActivity extends AppCompatActivity {
 
     private HomeFragment mHomeFragment;
-    private SelectedFragment mSelectedFragment;
+    private WallPaperFragment mWallPaperFragment;
+    private MyFragment mMyFragment;
+    private ArticleFragment mArticleFragment;
 
     private FragmentManager mFm;
     public BottomNavigationView mNavigationView;
@@ -43,7 +45,9 @@ public void initView(){
     //初始化Fragment
     public void initFragment(){
         mHomeFragment = new HomeFragment();
-        mSelectedFragment = new SelectedFragment();
+        mWallPaperFragment = new WallPaperFragment();
+        mArticleFragment = new ArticleFragment();
+        mMyFragment = new MyFragment();
         mFm = getSupportFragmentManager();
         switchFragment(mHomeFragment);
     }
@@ -74,11 +78,17 @@ public void initView(){
 
     public void initListener(){
         mNavigationView.setOnNavigationItemSelectedListener(item -> {
-          if (item.getItemId() == R.id.home){
+          if (item.getItemId() == R.id.item_home){
               switchFragment(mHomeFragment);
-          }else if(item.getItemId() == R.id.selected){
-              switchFragment(mSelectedFragment);
+          }else if(item.getItemId() == R.id.item_wallpaper){
+              switchFragment(mWallPaperFragment);
+          }else if(item.getItemId() == R.id.item_article){
+              switchFragment(mArticleFragment);
+          }else if(item.getItemId() == R.id.item_my){
+              switchFragment(mMyFragment);
           }
+
+
           return true;
         });
     }

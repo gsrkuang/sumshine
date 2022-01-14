@@ -12,12 +12,12 @@ import androidx.fragment.app.Fragment;
 import com.colin.sunshine.R;
 
 /**
- * Date:2021-12-02
- * Time:19:47
+ * Date:2022-01-14
+ * Time:16:29
  * author:colin
- * 特惠Fragment
+ * 文章Fragment
  */
-public class OnSellFragment extends Fragment {
+public class ArticleFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,9 +28,7 @@ public class OnSellFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.fragment_selected,container,false);
+        return inflater.inflate(R.layout.fragment_article,container,false);
 
     }
-
-
 }

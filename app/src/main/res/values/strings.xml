@@ -2,8 +2,7 @@
     <string name="app_name">sunshine</string>
 
     <string name="text_home">首页</string>
-    <string name="text_selected">精选</string>
-    <string name="text_red_packet">特惠</string>
-    <string name="text_search">搜索</string>
-
+    <string name="text_wallpaper">壁纸</string>
+    <string name="text_article">文章</string>
+    <string name="text_my">我的</string>
 </resources>

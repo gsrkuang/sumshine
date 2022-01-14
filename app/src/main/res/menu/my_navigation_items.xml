@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/home"
+        android:id="@+id/item_home"
         android:icon="@mipmap/home_normal"
         android:title="@string/text_home" />
     <item
-        android:id="@+id/selected"
+        android:id="@+id/item_wallpaper"
         android:icon="@mipmap/select_normal"
-        android:title="@string/text_selected" />
+        android:title="@string/text_wallpaper" />
     <item
-        android:id="@+id/red_packet"
+        android:id="@+id/item_article"
         android:icon="@mipmap/red_packet_normal"
-        android:title="@string/text_red_packet" />
+        android:title="@string/text_article" />
     <item
-        android:id="@+id/search"
+        android:id="@+id/item_my"
         android:icon="@mipmap/search_normal"
-        android:title="@string/text_search" />
+        android:title="@string/text_my" />
 </menu>
