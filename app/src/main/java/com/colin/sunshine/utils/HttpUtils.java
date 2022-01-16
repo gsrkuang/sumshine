@@ -4,6 +4,8 @@ import android.util.Log;
 
 import com.colin.sunshine.Constants;
 import com.colin.sunshine.model.CategoriesBean;
+import com.colin.sunshine.model.MoyuBean;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -112,7 +114,7 @@ public class HttpUtils {
 
         Request request=new Request.Builder()
                 .get()
-                .url(Constants.api_discovery)
+                .url(Constants.api_moyu_recommend("1"))
                 .build();
 
         Call call = okHttpClient.newCall(request);
@@ -128,40 +130,55 @@ public class HttpUtils {
                 //该方法的返回值是response，所以我们可以通过response拿到相关信息。
                 String string = response.body().string();//想拿到字符串，可以从response-body-string
                 /*String a="111";*/
+//                System.out.println("json->obj:++++" + string);
                 Log.e("string = " , string);
-                /*L.e(a);
-                 */
 
-                //json解析
+                JSONObject jsonObject = null;
                 try {
-                    JSONObject jsonObject = new JSONObject(string);
-
-                    JSONArray jsonArray = jsonObject.getJSONArray("data");
-
-                    CategoriesBean categoriesBean = new CategoriesBean();
-                    categoriesBean.setCode(jsonObject.getInt("code"));
-                    categoriesBean.setMessage(jsonObject.getString("message"));
-                    categoriesBean.setSuccess(jsonObject.getBoolean("success"));
-
-                    List<CategoriesBean.DataBean> list = new ArrayList<>();
-
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                        CategoriesBean.DataBean dataBean = new CategoriesBean.DataBean();
-                        dataBean.setId(jsonObject1.getInt("id"));
-                        dataBean.setTitle(jsonObject1.getString("title"));
-                        list.add(dataBean);
-                    }
-
-                    categoriesBean.setData(list);
+                    jsonObject = new JSONObject(string);
+                    JSONObject jsonObject1 = jsonObject.getJSONObject("data");
+                    Gson gson = new Gson();
+                    MoyuBean moyuBean = gson.fromJson(jsonObject1.toString(), MoyuBean.class);
+                    System.out.println("json->obj:" + moyuBean.toString());
 
 
-
-                    System.out.println("categoriesBean = " + categoriesBean);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
+//                Log.d(TAG, jsonString);
+
+                //json解析
+//                try {
+//                    JSONObject jsonObject = new JSONObject(string);
+//
+//                    JSONArray jsonArray = jsonObject.getJSONArray("data");
+//
+//                    CategoriesBean categoriesBean = new CategoriesBean();
+//                    categoriesBean.setCode(jsonObject.getInt("code"));
+//                    categoriesBean.setMessage(jsonObject.getString("message"));
+//                    categoriesBean.setSuccess(jsonObject.getBoolean("success"));
+//
+//                    List<CategoriesBean.DataBean> list = new ArrayList<>();
+//
+//                    for (int i = 0; i < jsonArray.length(); i++) {
+//                        JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+//                        CategoriesBean.DataBean dataBean = new CategoriesBean.DataBean();
+//                        dataBean.setId(jsonObject1.getInt("id"));
+//                        dataBean.setTitle(jsonObject1.getString("title"));
+//                        list.add(dataBean);
+//                    }
+//
+//                    categoriesBean.setData(list);
+//
+//
+//
+//                    System.out.println("categoriesBean = " + categoriesBean);
+//
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
 
             }
         });

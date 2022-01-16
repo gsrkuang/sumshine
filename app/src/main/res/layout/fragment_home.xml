@@ -4,10 +4,12 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/moyu_recyc"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="鱼塘">
-    </TextView>
+        android:layout_height="match_parent">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
 
 </RelativeLayout>

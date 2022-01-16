@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.colin.sunshine.Constants;
 import com.colin.sunshine.R;
 import com.colin.sunshine.utils.HttpUtils;
 
@@ -25,11 +26,14 @@ public class HomeFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         HttpUtils.getDiscovery();
+
+
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        
 
         return inflater.inflate(R.layout.fragment_home,container,false);
 
