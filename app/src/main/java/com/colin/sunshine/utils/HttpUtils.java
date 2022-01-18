@@ -3,6 +3,7 @@ package com.colin.sunshine.utils;
 import android.util.Log;
 
 import com.colin.sunshine.Constants;
+import com.colin.sunshine.http.CallBack;
 import com.colin.sunshine.model.CategoriesBean;
 import com.colin.sunshine.model.MoyuBean;
 import com.google.gson.Gson;
@@ -35,11 +36,11 @@ public class HttpUtils {
 
     public static String TAG = "HttpUtils";
 
-    public HttpUtils mHttpUtilsInstance;
+    public static HttpUtils mHttpUtilsInstance;
 
     public OkHttpClient mOkHttpClient;
 
-    public HttpUtils getInstance(){
+    public static HttpUtils getInstance(){
         if (mHttpUtilsInstance == null){
             mHttpUtilsInstance = new HttpUtils();
         }
@@ -47,7 +48,7 @@ public class HttpUtils {
     }
 
 
-    public static void post(String url,String requestBodyString){
+    public  void post(String url,String requestBodyString){
         MediaType mediaType = MediaType.parse("text/x-markdown; charset=utf-8");
 
         String requestBody = requestBodyString;
@@ -75,7 +76,7 @@ public class HttpUtils {
         });
     }
 
-    public static void get(String url ,String value){
+    public  void get(String url , CallBack callBack){
 
         OkHttpClient okHttpClient = new OkHttpClient();
 
@@ -88,18 +89,19 @@ public class HttpUtils {
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-
+                callBack.onFailed(e);
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 Log.e("onResponse:",response.message());
                 //该方法的返回值是response，所以我们可以通过response拿到相关信息。
-                String string = response.body().string();//想拿到字符串，可以从response-body-string
+                String str = response.body().string();//想拿到字符串，可以从response-body-string
                 /*String a="111";*/
-                Log.e("string = " , string);
-                /*L.e(a);
-                 */
+                Log.e("string = " , str);
+                callBack.onSuccess(str);
+
+
             }
         });
 
@@ -140,8 +142,6 @@ public class HttpUtils {
                     Gson gson = new Gson();
                     MoyuBean moyuBean = gson.fromJson(jsonObject1.toString(), MoyuBean.class);
                     System.out.println("json->obj:" + moyuBean.toString());
-
-
 
                 } catch (JSONException e) {
                     e.printStackTrace();

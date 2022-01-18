@@ -10,4 +10,9 @@
     <color name="colorTmall">#D0021B</color>
     <color name="colorPageBg">#EFEEEE</color>
     <color name="colorEEEEEE">#EFEEEE</color>
+
+    <color name="pink">#FA7299</color>
+
+    <!-- 默认的文本颜色 -->
+    <color name="default_font_color">#8A000000</color>
 </resources>
