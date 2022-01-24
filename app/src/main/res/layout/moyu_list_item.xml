@@ -8,6 +8,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="10dp"
         android:orientation="horizontal">
 
         <FrameLayout
@@ -46,6 +47,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="2"
+                android:text="来自地球"
                 android:textColor="@color/default_font_color"
                 android:textSize="11sp" />
 
@@ -57,13 +59,25 @@
         android:id="@+id/tv_moyu_item_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:textColor="@color/default_font_color"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="6dp"
         android:ellipsize="end"
 
         android:maxLines="5"
-        android:text="这是鱼塘的内容">
+        android:text="这是鱼塘的内容这是鱼塘的内容这是鱼塘的内容这是鱼塘的内容这是鱼塘的内容这是鱼塘的内容这是鱼塘的内容这是鱼塘的内容这是鱼塘的内容这是鱼塘的内容这是鱼塘的内容这是鱼塘的内容这是鱼塘的内容这是鱼塘的内容这是鱼塘的内容这是鱼塘的内容这是鱼塘的内容这是鱼塘的内容这是鱼塘的内容这是鱼塘的内容这是鱼塘的内容这是鱼塘的内容这是鱼塘的内容这是鱼塘的内容">
     </TextView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/simple_grid_rvlayout"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="6dp"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
 </LinearLayout>
