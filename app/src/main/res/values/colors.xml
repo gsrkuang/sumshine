@@ -15,4 +15,11 @@
 
     <!-- 默认的文本颜色 -->
     <color name="default_font_color">#8A000000</color>
+    <!-- 对话框确认按钮的文本颜色 -->
+    <color name="common_confirm_text_color">#007AFF</color>
+
+    <!-- 按钮禁用时的颜色 -->
+    <color name="common_button_disable_color">#BBBBBB</color>
+
+
 </resources>

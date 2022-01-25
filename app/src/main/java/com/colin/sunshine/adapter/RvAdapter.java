@@ -56,20 +56,29 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MyViewHolder> {
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .into(holder.iv_moyu_item_avatar);
 
-
         ImgAdapter imgAdapter = new ImgAdapter(mContext,mDatas.get(position).images);
-        //创建线性布局
-//        LinearLayoutManager mLayoutManager = new LinearLayoutManager(mContext);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(mContext,3);
+        //给RecyclerView设置布局管理器
         holder.simple_grid_rvlayout.setLayoutManager(gridLayoutManager);
+        //创建适配器，并且设置
         holder.simple_grid_rvlayout.setAdapter(imgAdapter);
 
-        //垂直方向
-//        mLayoutManager.setOrientation(OrientationHelper.VERTICAL);
-        //给RecyclerView设置布局管理器
-//        recyclerView.setLayoutManager(mLayoutManager);
-        //创建适配器，并且设置
-//        recyclerView.setAdapter(rvAdapter);
+        if (mDatas.get(position).topicName == null){
+//            holder.tv_moyu_topic_label_layout.setVisibility(View.INVISIBLE);
+            holder.tv_moyu_topic_label.setVisibility(View.GONE);
+        }else {
+
+            holder.tv_moyu_topic_label.setText(mDatas.get(position).topicName);
+        }
+
+        if (mDatas.get(position).commentCount != 0){
+            holder.tv_moyu_comment.setText(mDatas.get(position).commentCount + "");
+        }
+        if (mDatas.get(position).thumbUpCount != 0){
+            holder.tv_moyu_great.setText(mDatas.get(position).thumbUpCount + "");
+        }
+
+//        holder.iv_moyu_share.setOnClickListener();
 
     }
 
@@ -81,14 +90,21 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MyViewHolder> {
 
     class MyViewHolder extends RecyclerView.ViewHolder{
 
-        private TextView tv_moyu_item_nick_name;
+        private TextView tv_moyu_item_nick_name;//昵称
 
-        private TextView tv_moyu_item_desc;
+        private TextView tv_moyu_item_desc;//描述
 
-        private TextView tv_moyu_item_content;
+        private TextView tv_moyu_item_content;//内容
+        private TextView tv_moyu_topic_label;//内容标签
+        private TextView tv_moyu_topic_label_layout;//内容标签
 
-        private RecyclerView simple_grid_rvlayout;
-        private ImageView iv_moyu_item_avatar;
+        private RecyclerView simple_grid_rvlayout;//九宫格图片
+        private ImageView iv_moyu_item_avatar;//头像
+
+
+        private TextView tv_moyu_comment;//评论
+        private TextView tv_moyu_great;//点赞
+        private ImageView iv_moyu_share;//转发
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -100,6 +116,12 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MyViewHolder> {
 
             simple_grid_rvlayout = itemView.findViewById(R.id.simple_grid_rvlayout);
             iv_moyu_item_avatar = itemView.findViewById(R.id.iv_moyu_item_avatar);
+            tv_moyu_topic_label = itemView.findViewById(R.id.tv_moyu_topic_label);
+
+            tv_moyu_comment = itemView.findViewById(R.id.tv_moyu_comment);
+            tv_moyu_great = itemView.findViewById(R.id.tv_moyu_great);
+            iv_moyu_share = itemView.findViewById(R.id.iv_moyu_share);
+
 
 
         }
