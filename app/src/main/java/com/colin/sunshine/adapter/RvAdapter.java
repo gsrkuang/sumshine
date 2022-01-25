@@ -1,6 +1,7 @@
 package com.colin.sunshine.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,8 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.OrientationHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -42,8 +41,15 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         holder.tv_moyu_item_nick_name.setText(mDatas.get(position).nickname);
+        //设置vip昵称颜色
+        if (mDatas.get(position).vip){
+//            mContext.getResources().getColor();
+        }else {
+            holder.tv_moyu_item_nick_name.setTextColor(R.color.default_font_color);
+        }
+
         holder.tv_moyu_item_content.setText(mDatas.get(position).content);
-        holder.tv_moyu_item_desc.setText("来自" +mDatas.get(position).company + "  " + mDatas.get(position).createTime);
+        holder.tv_moyu_item_desc.setText("来自" +mDatas.get(position).company + " @" +mDatas.get(position).position +" " +mDatas.get(position).createTime);
 
         Glide.with(mContext)
                 .load(mDatas.get(position).avatar)
@@ -67,7 +73,6 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MyViewHolder> {
 //            holder.tv_moyu_topic_label_layout.setVisibility(View.INVISIBLE);
             holder.tv_moyu_topic_label.setVisibility(View.GONE);
         }else {
-
             holder.tv_moyu_topic_label.setText(mDatas.get(position).topicName);
         }
 

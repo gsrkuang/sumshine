@@ -42,7 +42,7 @@ public class MoyuListBean {
     @SerializedName("thumbUpList")
     public List<String> thumbUpList;
     @SerializedName("vip")
-    public String vip;
+    public boolean vip;
 
     @Override
     public String toString() {
