@@ -40,12 +40,14 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
+//        holder.itemView.setBackgroundColor(Color.YELLOW);
+
         holder.tv_moyu_item_nick_name.setText(mDatas.get(position).nickname);
         //设置vip昵称颜色
         if (mDatas.get(position).vip){
 //            mContext.getResources().getColor();
         }else {
-            holder.tv_moyu_item_nick_name.setTextColor(R.color.default_font_color);
+            holder.tv_moyu_item_nick_name.setTextColor(R.color.black);
         }
 
         holder.tv_moyu_item_content.setText(mDatas.get(position).content);
