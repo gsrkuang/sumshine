@@ -6,6 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.OrientationHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -28,7 +32,6 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MyViewHolder> {
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        LayoutInflater layoutInflater = LayoutInflater.from(mContext);
         View view = LayoutInflater.from(mContext).inflate(R.layout.moyu_list_item, null);
         MyViewHolder holder = new MyViewHolder(view);
 
@@ -38,7 +41,6 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-//        holder.tv_moyu_item_nick_name.setText(mDatas.get(position));
         holder.tv_moyu_item_nick_name.setText(mDatas.get(position).nickname);
         holder.tv_moyu_item_content.setText(mDatas.get(position).content);
         holder.tv_moyu_item_desc.setText("来自" +mDatas.get(position).company + "  " + mDatas.get(position).createTime);
@@ -53,6 +55,22 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MyViewHolder> {
                 // 不使用磁盘缓存头像
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .into(holder.iv_moyu_item_avatar);
+
+
+        ImgAdapter imgAdapter = new ImgAdapter(mContext,mDatas.get(position).images);
+        //创建线性布局
+//        LinearLayoutManager mLayoutManager = new LinearLayoutManager(mContext);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(mContext,3);
+        holder.simple_grid_rvlayout.setLayoutManager(gridLayoutManager);
+        holder.simple_grid_rvlayout.setAdapter(imgAdapter);
+
+        //垂直方向
+//        mLayoutManager.setOrientation(OrientationHelper.VERTICAL);
+        //给RecyclerView设置布局管理器
+//        recyclerView.setLayoutManager(mLayoutManager);
+        //创建适配器，并且设置
+//        recyclerView.setAdapter(rvAdapter);
+
     }
 
 
