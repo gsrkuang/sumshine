@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.colin.sunshine.R;
 import com.colin.sunshine.model.MoyuListBean;
+import com.colin.sunshine.ui.view.CircleImageView;
 
 import java.util.List;
 
@@ -45,24 +47,31 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MyViewHolder> {
         holder.tv_moyu_item_nick_name.setText(mDatas.get(position).nickname);
         //设置vip昵称颜色
         if (mDatas.get(position).vip){
-//            mContext.getResources().getColor();
+            //设置用户头像VIP
+            holder.iv_moyu_item_avatar.setVip(true);
+            //设置用户昵称VIP
+            holder.tv_moyu_item_nick_name.setTextColor(mContext.getResources().getColor(R.color.pink));
         }else {
-            holder.tv_moyu_item_nick_name.setTextColor(R.color.black);
+            holder.tv_moyu_item_nick_name.setTextColor(mContext.getResources().getColor(R.color.black));
         }
 
         holder.tv_moyu_item_content.setText(mDatas.get(position).content);
         holder.tv_moyu_item_desc.setText("来自" +mDatas.get(position).company + " @" +mDatas.get(position).position +" " +mDatas.get(position).createTime);
 
-        Glide.with(mContext)
+        holder.tv_moyu_item_content.setTextIsSelectable(true); //设置可选
+
+        Glide.with(holder.itemView)
                 .load(mDatas.get(position).avatar)
                 // 将头像剪裁成圆形
-                .circleCrop()
+//                .circleCrop()
                 .error(R.mipmap.ic_default_avatar)
                 // 不使用内存缓存头像
                 .skipMemoryCache(true)
                 // 不使用磁盘缓存头像
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .into(holder.iv_moyu_item_avatar);
+
+
 
         ImgAdapter imgAdapter = new ImgAdapter(mContext,mDatas.get(position).images);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(mContext,3);
@@ -85,6 +94,7 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MyViewHolder> {
             holder.tv_moyu_great.setText(mDatas.get(position).thumbUpCount + "");
         }
 
+
 //        holder.iv_moyu_share.setOnClickListener();
 
     }
@@ -106,13 +116,14 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MyViewHolder> {
         private TextView tv_moyu_topic_label_layout;//内容标签
 
         private RecyclerView simple_grid_rvlayout;//九宫格图片
-        private ImageView iv_moyu_item_avatar;//头像
+        private CircleImageView iv_moyu_item_avatar;//头像
 
 
         private TextView tv_moyu_comment;//评论
         private TextView tv_moyu_great;//点赞
         private ImageView iv_moyu_share;//转发
 
+        private FrameLayout fl_avatar_container;
         public MyViewHolder(View itemView) {
             super(itemView);
             tv_moyu_item_nick_name = itemView.findViewById(R.id.tv_moyu_item_nick_name);
@@ -128,6 +139,9 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MyViewHolder> {
             tv_moyu_comment = itemView.findViewById(R.id.tv_moyu_comment);
             tv_moyu_great = itemView.findViewById(R.id.tv_moyu_great);
             iv_moyu_share = itemView.findViewById(R.id.iv_moyu_share);
+
+            fl_avatar_container = itemView.findViewById(R.id.fl_avatar_container);
+
 
 
 

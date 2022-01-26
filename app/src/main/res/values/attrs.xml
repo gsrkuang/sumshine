@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="UserIcon">
+        <attr name="vip" format="boolean"/>
+<!--        <attr name="attr2" format="integer"/>-->
+    </declare-styleable>
+
+</resources>
