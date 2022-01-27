@@ -82,6 +82,7 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void run() {
                         swipeRefreshLayout.setRefreshing(false);
+                        page = 1;
                         getHttpData();
                     }
                 });
