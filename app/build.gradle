@@ -54,7 +54,12 @@ dependencies {
     //google的刷新布局
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
 
-    //title bar
-    implementation 'com.hjq:titlebar:5.0'
+
+    // 查看大图
+//    implementation 'com.github.SherlockGougou:BigImageViewPager:androidx-6.2.1'
+
+
+//    implementation 'com.github.SherlockGougou:BigImageViewPager:androidx-6.2.1'
+//    implementation 'com.github.SuperKotlin:PictureViewer:2.0.1'  //新版本
 
 }

@@ -98,8 +98,6 @@ public class RvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .into(holder.iv_moyu_item_avatar);
 
-
-
             ImgAdapter imgAdapter = new ImgAdapter(mContext,mDatas.get(position).images);
             GridLayoutManager gridLayoutManager = new GridLayoutManager(mContext,3);
             //给RecyclerView设置布局管理器
