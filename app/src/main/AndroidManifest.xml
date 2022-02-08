@@ -10,9 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.activity.ImagePreviewActivity"
-            android:exported="true" />
-        <activity
             android:name=".ui.activity.MainActivity"
             android:exported="true">
             <intent-filter>

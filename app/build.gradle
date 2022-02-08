@@ -56,10 +56,13 @@ dependencies {
 
 
     // 查看大图
-//    implementation 'com.github.SherlockGougou:BigImageViewPager:androidx-6.2.1'
+    implementation 'com.github.SherlockGougou:BigImageViewPager:androidx-6.2.1'
 
 
 //    implementation 'com.github.SherlockGougou:BigImageViewPager:androidx-6.2.1'
 //    implementation 'com.github.SuperKotlin:PictureViewer:2.0.1'  //新版本
+//
+//    implementation 'com.susion:image-viewer:1.0.2'
+
 
 }

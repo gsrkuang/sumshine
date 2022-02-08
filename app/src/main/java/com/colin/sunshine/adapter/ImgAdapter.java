@@ -1,8 +1,6 @@
 package com.colin.sunshine.adapter;
 
 import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,11 +12,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.colin.sunshine.R;
-import com.colin.sunshine.model.MoyuListBean;
-import com.colin.sunshine.ui.activity.ImagePreviewActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import cc.shinichi.library.ImagePreview;
+import cc.shinichi.library.bean.ImageInfo;
 
 /**
  * Date:2022-01-25
@@ -65,33 +64,50 @@ public class ImgAdapter extends RecyclerView.Adapter<ImgAdapter.ImgViewHolder> {
             @Override
             public void onClick(View v) {
 
+                ImageInfo imageInfo;
+                final List<ImageInfo> imageInfoList = new ArrayList<>();
+                for (String image : images) {
 
-                //打开图片查看器，并传入images,还有告诉图片查看器显示第几张图片
-//                Intent intent = new Intent(mContext, ImagePreviewActivity.class);
-//                Bundle bundle = new Bundle();
-                ArrayList<String> arrayList = new ArrayList<String>();
 
-                for (int i =0 ; i <images.size();i++){
-                    arrayList.add(images.get(i));
+                    imageInfo = new ImageInfo();
+                    imageInfo.setOriginUrl(image);// 原图url
+                    imageInfo.setThumbnailUrl(image);// 缩略图url
+                    imageInfoList.add(imageInfo);
                 }
-//
-//                bundle.putStringArrayList("images",arrayList);
-//                bundle.putInt("index",tag);
-//                intent.putExtras(bundle);
-//                mContext.startActivity(intent);
 
+                // 最简单的调用，即可实现大部分需求，如需定制，可参考下一步的自定义代码：
 
-//                PictureConfig config = new PictureConfig.Builder()
-//                        .setListData(arrayList)	//图片数据List<String> list
-//                        .setPosition(tag)	//图片下标（从第position张图片开始浏览）
-//                        .setDownloadPath("pictureviewer")	//图片下载文件夹地址
-//                        .setIsShowNumber(true)//是否显示数字下标
-//                        .needDownload(true)	//是否支持图片下载
-//                        .setPlacrHolder(R.mipmap.ic_launcher)	//占位符图片（图片加载完成前显示的资源图片，来源drawable或者mipmap）
-//                        .build();
-//
-//                ImagePagerActivity.startActivity(mContext,config);
+                ImagePreview
+                        .getInstance()
+                        // 上下文，必须是activity，不需要担心内存泄漏，本框架已经处理好；
+                        .setContext(mContext)
 
+                        // 设置从第几张开始看（索引从0开始）
+                        .setIndex(tag)
+
+                        //=================================================================================================
+                        // 有三种设置数据集合的方式，根据自己的需求进行三选一：
+                        // 1：第一步生成的imageInfo List
+                        .setImageInfoList(imageInfoList)
+
+                        // 2：直接传url List
+                        //.setImageList(List<String> imageList)
+
+                        // 3：只有一张图片的情况，可以直接传入这张图片的url
+                        //.setImage(String image)
+                        //=================================================================================================
+
+                        // 开启预览
+                        .start();
+
+                // 默认配置为：
+                //      显示顶部进度指示器、
+                //      显示右侧下载按钮、
+                //      隐藏左侧关闭按钮、
+                //      开启点击图片关闭、
+                //      关闭下拉图片关闭、
+                //      加载方式为手动模式
+                //      加载原图的百分比在底部
             }
         });
 
