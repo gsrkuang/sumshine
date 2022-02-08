@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -43,6 +44,7 @@ public class HomeFragment extends Fragment {
     private RecyclerView recyclerView;
     private MoyuBean moyuBean;
     private SwipeRefreshLayout swipeRefreshLayout;
+    private TextView tv_title;
     private int page = 1;
     private int loadingTag = 0; //1代表正在加载中
 
@@ -67,11 +69,13 @@ public class HomeFragment extends Fragment {
     public void initView(View view) {
         recyclerView = view.findViewById(R.id.rv_moyu_detail_comment);
         swipeRefreshLayout = view.findViewById(R.id.sl_moyu_refreshlayout);
-
+        tv_title = view.findViewById(R.id.tv_title);
 
     }
 
     public void initData() {
+        tv_title.setText(R.string.title_home);
+
         swipeRefreshLayout.setColorSchemeResources(R.color.pink);
 //        swipeRefreshLayout.setProgressBackgroundColorSchemeColor(getResources().getColor(R.color.pink));
 

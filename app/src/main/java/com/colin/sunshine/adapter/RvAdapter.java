@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.text.HtmlCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -78,7 +79,10 @@ public class RvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 holder.tv_moyu_item_nick_name.setTextColor(mContext.getResources().getColor(R.color.black));
             }
 
-            holder.tv_moyu_item_content.setText(mDatas.get(position).content);
+//            holder.tv_moyu_item_content.setText(mDatas.get(position).content);
+
+            holder.tv_moyu_item_content.setText(HtmlCompat.fromHtml(mDatas.get(position).content,HtmlCompat.FROM_HTML_MODE_LEGACY));
+
             holder.tv_moyu_item_desc.setText("来自" +mDatas.get(position).company + " @" +mDatas.get(position).position +" " +mDatas.get(position).createTime);
 
             holder.tv_moyu_item_content.setTextIsSelectable(true); //设置可选

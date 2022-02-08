@@ -53,4 +53,8 @@ dependencies {
 
     //google的刷新布局
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
+
+    //title bar
+    implementation 'com.hjq:titlebar:5.0'
+
 }

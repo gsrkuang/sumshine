@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -18,11 +20,15 @@
 <!--        tools:listitem="@layout/moyu_list_item" />-->
 
 
+    <include layout="@layout/title_bar"></include>
+
 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/sl_moyu_refreshlayout">
+
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_moyu_detail_comment"
@@ -39,4 +45,4 @@
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 
-</RelativeLayout>
+</LinearLayout>
