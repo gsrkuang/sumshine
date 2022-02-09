@@ -24,6 +24,15 @@ public class Constants {
         return api_main + "/ct/moyu/list/recommend/" +page;
     }
 
+//    https://api.sunofbeaches.com/ct/moyu/comment/1491320795333427202/0?sort=1
+//    请求方法：GET
+//    参数momentId：动态的ID
+//    参数page：页码，第1页开始
+//    query参数sort,1表示按时间降序，旧的在后面，0表示按时间升序，新的在后面
+    public static String api_moyu_comment(String id ,String page){
+        return api_main + "ct/moyu/comment/" + id + "/" + page +"?sort=1";
+    }
+
 
 
 }

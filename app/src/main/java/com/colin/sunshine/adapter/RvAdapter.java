@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.colin.sunshine.R;
-import com.colin.sunshine.model.MoyuBean;
 import com.colin.sunshine.model.MoyuListBean;
 import com.colin.sunshine.ui.view.CircleImageView;
 import com.colin.sunshine.viewholder.FooterViewHolder;
@@ -47,6 +46,7 @@ public class RvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             MyViewHolder viewHolder = new MyViewHolder(view);
             return viewHolder;
         } else {
+
             //底部“加载更多”item
             View view = LayoutInflater.from(viewGroup.getContext())
                     .inflate(R.layout.list_item_footview, viewGroup, false);
