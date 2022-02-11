@@ -29,8 +29,8 @@ public class Constants {
 //    参数momentId：动态的ID
 //    参数page：页码，第1页开始
 //    query参数sort,1表示按时间降序，旧的在后面，0表示按时间升序，新的在后面
-    public static String api_moyu_comment(String id ,String page){
-        return api_main + "ct/moyu/comment/" + id + "/" + page +"?sort=1";
+    public static String api_moyu_detail_comment(String id ,String page){
+        return api_main + "/ct/moyu/comment/" + id + "/" + page +"?sort=1";
     }
 
 

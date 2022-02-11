@@ -76,7 +76,7 @@ public class HttpUtils {
         });
     }
 
-    public  void get(String url , CallBack callBack){
+    public void get(String url , CallBack callBack){
 
         OkHttpClient okHttpClient = new OkHttpClient();
 

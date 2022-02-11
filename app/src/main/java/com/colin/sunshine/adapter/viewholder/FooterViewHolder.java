@@ -1,4 +1,4 @@
-package com.colin.sunshine.viewholder;
+package com.colin.sunshine.adapter.viewholder;
 
 import android.view.View;
 

@@ -67,7 +67,7 @@ public class HomeFragment extends Fragment {
 
 
     public void initView(View view) {
-        recyclerView = view.findViewById(R.id.rv_moyu_detail_comment);
+        recyclerView = view.findViewById(R.id.rv_moyu_detail);
         swipeRefreshLayout = view.findViewById(R.id.sl_moyu_refreshlayout);
         tv_title = view.findViewById(R.id.tv_title);
 
@@ -103,6 +103,8 @@ public class HomeFragment extends Fragment {
             public void onSuccess(String s) {
                 Log.e("onSuccess = ", s);
                 setDataToBean(s);
+
+                //xuyao genggai
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -130,6 +132,7 @@ public class HomeFragment extends Fragment {
                                             loadingTag = 0;
                                             MoyuBean moyuBean = setDataToBean(s);
 
+                                            //runOnUiThread 这里要改成Handler的
                                             getActivity().runOnUiThread(new Runnable() {
                                                 @Override
                                                 public void run() {

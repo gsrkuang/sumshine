@@ -1,12 +1,10 @@
 package com.colin.sunshine.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.core.text.HtmlCompat;
@@ -16,9 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.colin.sunshine.R;
+import com.colin.sunshine.adapter.viewholder.MoyuViewHolder;
 import com.colin.sunshine.model.MoyuListBean;
-import com.colin.sunshine.ui.view.CircleImageView;
-import com.colin.sunshine.viewholder.FooterViewHolder;
+import com.colin.sunshine.ui.activity.MoyuDetailActivity;
+import com.colin.sunshine.adapter.viewholder.FooterViewHolder;
 
 import java.util.List;
 
@@ -29,7 +28,7 @@ public class RvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<MoyuListBean> mDatas;
 
     private static final int TYPE_ITEM =0;  //普通Item View
-    private static final int TYPE_FOOTER = 1;  //顶部FootView
+    private static final int TYPE_FOOTER = 1;  //底部FootView
 
     public RvAdapter(Context context,List<MoyuListBean> datas){
         this.mContext = context;
@@ -43,7 +42,7 @@ public class RvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             //你的item
             View view = LayoutInflater.from(viewGroup.getContext())
                     .inflate(R.layout.moyu_list_item, viewGroup, false);
-            MyViewHolder viewHolder = new MyViewHolder(view);
+            MoyuViewHolder viewHolder = new MoyuViewHolder(view);
             return viewHolder;
         } else {
 
@@ -63,8 +62,10 @@ public class RvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
 
-        if (viewHolder instanceof MyViewHolder){
-            MyViewHolder holder = (MyViewHolder) viewHolder;
+        int position_tag = position;
+
+        if (viewHolder instanceof MoyuViewHolder){
+            MoyuViewHolder holder = (MoyuViewHolder) viewHolder;
 //            holder.itemView.setBackgroundColor(Color.YELLOW);
 
             holder.tv_moyu_item_nick_name.setText(mDatas.get(position).nickname);
@@ -119,6 +120,16 @@ public class RvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             }
 
 
+            holder.tv_moyu_item_content.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //跳转到摸鱼详情页Activity
+                    Intent intent = new Intent(mContext, MoyuDetailActivity.class);
+                    intent.putExtra("MoyuListBean",mDatas.get(position_tag));
+                    mContext.startActivity(intent);
+                }
+            });
+
 //        holder.iv_moyu_share.setOnClickListener();
 
         }else if (viewHolder instanceof FooterViewHolder){
@@ -156,48 +167,7 @@ public class RvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         notifyDataSetChanged();
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder{
 
-        private TextView tv_moyu_item_nick_name;//昵称
-
-        private TextView tv_moyu_item_desc;//描述
-
-        private TextView tv_moyu_item_content;//内容
-        private TextView tv_moyu_topic_label;//内容标签
-//        private TextView tv_moyu_topic_label_layout;//内容标签
-
-        private RecyclerView simple_grid_rvlayout;//九宫格图片
-        private CircleImageView iv_moyu_item_avatar;//头像
-
-
-        private TextView tv_moyu_comment;//评论
-        private TextView tv_moyu_great;//点赞
-        private ImageView iv_moyu_share;//转发
-
-        private FrameLayout fl_avatar_container;
-        public MyViewHolder(View itemView) {
-            super(itemView);
-            tv_moyu_item_nick_name = itemView.findViewById(R.id.tv_moyu_item_nick_name);
-
-            tv_moyu_item_desc = itemView.findViewById(R.id.tv_moyu_item_desc);
-
-            tv_moyu_item_content = itemView.findViewById(R.id.tv_moyu_item_content);
-
-            simple_grid_rvlayout = itemView.findViewById(R.id.simple_grid_rvlayout);
-            iv_moyu_item_avatar = itemView.findViewById(R.id.iv_moyu_item_avatar);
-            tv_moyu_topic_label = itemView.findViewById(R.id.tv_moyu_topic_label);
-
-            tv_moyu_comment = itemView.findViewById(R.id.tv_moyu_comment);
-            tv_moyu_great = itemView.findViewById(R.id.tv_moyu_great);
-            iv_moyu_share = itemView.findViewById(R.id.iv_moyu_share);
-
-            fl_avatar_container = itemView.findViewById(R.id.fl_avatar_container);
-
-
-
-
-        }
-    }
 
 
 }
