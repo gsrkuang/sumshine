@@ -2,6 +2,7 @@ package com.colin.sunshine.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -177,20 +178,34 @@ public class MoyuDetailRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     holder.tv_child_reply_msg1.setVisibility(View.GONE);
                     holder.tv_child_reply_msg_all.setVisibility(View.GONE);
                 }
+                String textStr = "<font color=\"blue\">" +
+                        mDatas.get(postionComment).subComments.get(0).nickname +  "</font>"  +
+                        " 回复 " +
+                        "<font color=\"blue\">" +
+                        mDatas.get(postionComment).subComments.get(0).targetUserNickname +  "</font>"+
+                        " : "+
+                        mDatas.get(postionComment).subComments.get(0).content;//文字只能单独拿出来 不能直接写入Html.fromHtml()中,不然会达不到变色的效果
 
-                holder.tv_child_reply_msg.setText(
-                        mDatas.get(postionComment).subComments.get(0).nickname +
-                        " 回复 " + mDatas.get(postionComment).subComments.get(0).targetUserNickname + " : "+
-                        mDatas.get(postionComment).subComments.get(0).content);
+
+                holder.tv_child_reply_msg.setText(Html.fromHtml(textStr));
             }
             if (CommentsSize > 1){
                 if (CommentsSize == 2){
                     holder.tv_child_reply_msg_all.setVisibility(View.GONE);
                 }
 
-                holder.tv_child_reply_msg1.setText(mDatas.get(postionComment).subComments.get(1).nickname +
-                                " 回复 " + mDatas.get(postionComment).subComments.get(1).targetUserNickname + " : "+
-                        mDatas.get(postionComment).subComments.get(1).content);
+                String textStr = "<font color=\"blue\">" +
+                        mDatas.get(postionComment).subComments.get(1).nickname +  "</font>"  +
+                        " 回复 " +
+                        "<font color=\"blue\">" +
+                        mDatas.get(postionComment).subComments.get(1).targetUserNickname +  "</font>"+
+                        " : "+
+                        mDatas.get(postionComment).subComments.get(1).content;//文字只能单独拿出来 不能直接写入Html.fromHtml()中,不然会达不到变色的效果
+
+
+                holder.tv_child_reply_msg1.setText(Html.fromHtml(textStr));
+
+
             }
 
             if (CommentsSize > 2){
