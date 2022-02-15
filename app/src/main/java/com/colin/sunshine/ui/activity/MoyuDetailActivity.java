@@ -59,12 +59,14 @@ public class MoyuDetailActivity extends AppCompatActivity {
 
         //使得状态栏透明
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-
+        //1
         initView();
-        //获取intent来的id数据，id用于查找api得到评论数据
+        //2 获取intent来的id数据，id用于查找api得到评论数据
         initIntentData();
-
+        //3
         getHttpData();
+        //4
+        initListener();
 
     }
 
@@ -136,8 +138,21 @@ public class MoyuDetailActivity extends AppCompatActivity {
 
             }
         });
+
+        stopRefresh();
     }
 
+    public void initListener(){
+        swipeRefreshLayout.setColorSchemeResources(R.color.pink);
+//        swipeRefreshLayout.setProgressBackgroundColorSchemeColor(getResources().getColor(R.color.pink));
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getHttpData();
+            }
+        });
+    }
 
     public MoyuDetailBean setDataToBean(String s) {
         JSONObject jsonObject = null;
@@ -156,5 +171,9 @@ public class MoyuDetailActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public void stopRefresh(){
+        swipeRefreshLayout.setRefreshing(false);
     }
 }

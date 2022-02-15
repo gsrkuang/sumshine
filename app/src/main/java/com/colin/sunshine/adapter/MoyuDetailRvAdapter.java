@@ -191,7 +191,6 @@ public class MoyuDetailRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                         " : "+
                         mDatas.get(postionComment).subComments.get(0).content;//文字只能单独拿出来 不能直接写入Html.fromHtml()中,不然会达不到变色的效果
 
-
                 holder.tv_child_reply_msg.setText(Html.fromHtml(textStr));
             }
             if (CommentsSize > 1){
