@@ -2,6 +2,7 @@ package com.colin.sunshine.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -10,7 +11,7 @@ import java.util.List;
  * author:colin
  * desc:摸鱼详情评论Bean
  */
-public class MoyuDetailBean {
+public class MoyuDetailBean implements Serializable{
 
     @SerializedName("currentPage")
     public int currentPage;
@@ -41,7 +42,7 @@ public class MoyuDetailBean {
                 '}';
     }
 
-    public static class MoyuDetailListBean {
+    public static class MoyuDetailListBean implements Serializable {
 
         @SerializedName("id")
         public String id;
@@ -100,7 +101,7 @@ public class MoyuDetailBean {
                     '}';
         }
 
-        public static class MoyuDetailListSubCommentsBean {
+        public static class MoyuDetailListSubCommentsBean implements Serializable {
 
             @SerializedName("id")
             public String id;

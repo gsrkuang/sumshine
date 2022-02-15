@@ -14,14 +14,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.colin.sunshine.Constants;
 import com.colin.sunshine.R;
 import com.colin.sunshine.adapter.viewholder.MoyuDetailCommentViewHolder;
 import com.colin.sunshine.adapter.viewholder.MoyuViewHolder;
-import com.colin.sunshine.adapter.viewholder.FooterViewHolder;
 import com.colin.sunshine.model.MoyuDetailBean;
 import com.colin.sunshine.model.MoyuListBean;
-import com.colin.sunshine.ui.activity.MoyuDetailActivity;
+import com.colin.sunshine.ui.activity.MoyuDetailCommentActivity;
 
 import java.util.List;
 
@@ -32,11 +30,8 @@ import java.util.List;
  */
 public class MoyuDetailRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-
-
     private static final int TYPE_TOP =0;  //顶部 VIEW
     private static final int TYPE_ITEM = 1;  //评论 View
-
 
     private Context mContext;
     private MoyuListBean beanData;
@@ -66,7 +61,7 @@ public class MoyuDetailRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             //加载底部布局，评论模块
 
             View view = LayoutInflater.from(viewGroup.getContext())
-                    .inflate(R.layout.moyu_detail_comment, viewGroup, false);
+                    .inflate(R.layout.moyu_detail_comment_item, viewGroup, false);
 
             MoyuDetailCommentViewHolder moyuDetailCommentViewHolder = new MoyuDetailCommentViewHolder(view);
             return moyuDetailCommentViewHolder;
@@ -104,6 +99,7 @@ public class MoyuDetailRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
             holder.tv_moyu_item_content.setTextIsSelectable(true); //设置可选
 
+            holder.tv_moyu_item_content.setMaxLines(100);
             Glide.with(holder.itemView)
                     .load(beanData.avatar)
                     // 将头像剪裁成圆形
@@ -215,29 +211,26 @@ public class MoyuDetailRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             if (CommentsSize > 2){
 
                 holder.tv_child_reply_msg_all.setText("查看全部" +mDatas.get(postionComment).subComments.size()+ "条回复");
-                holder.tv_child_reply_msg_all.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        //跳转到所有评论页面
-
-                    }
-                });
+//                holder.tv_child_reply_msg_all.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        //跳转到所有评论页面
+//
+//                    }
+//                });
             }
 
+            holder.cl_container.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //跳转到所有评论界面
+                    Intent intent = new Intent(mContext, MoyuDetailCommentActivity.class);
+                    MoyuDetailBean.MoyuDetailListBean moyuDetailListBean = mDatas.get(postionComment);
+                    intent.putExtra("MoyuDetailListBean",moyuDetailListBean);
+                    mContext.startActivity(intent);
+                }
+            });
 
-//            if (mDatas.get(postionComment).subComments.size() != 0){
-////
-////                holder.tv_child_reply_msg.setText(
-////                        mDatas.get(postionComment).subComments.get(0).nickname +
-////                        " 回复 " + mDatas.get(postionComment).subComments.get(0).targetUserNickname + " : "+
-////                        mDatas.get(postionComment).subComments.get(0).content);
-////
-////
-////                holder.tv_child_reply_msg1.setText(mDatas.get(postionComment).subComments.get(1).nickname +
-////                                " 回复 " + mDatas.get(postionComment).subComments.get(1).targetUserNickname + " : "+
-////                        mDatas.get(postionComment).subComments.get(1).content);
-////
-//            }
 
 
 

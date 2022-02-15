@@ -3,6 +3,8 @@ package com.colin.sunshine.adapter.viewholder;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,6 +38,8 @@ public class MoyuViewHolder extends RecyclerView.ViewHolder{
     public ImageView iv_moyu_share;//转发
 
     public FrameLayout fl_avatar_container;
+
+    public LinearLayout ll_container;
     public MoyuViewHolder(View itemView) {
         super(itemView);
         tv_moyu_item_nick_name = itemView.findViewById(R.id.tv_moyu_item_nick_name);
@@ -53,6 +57,8 @@ public class MoyuViewHolder extends RecyclerView.ViewHolder{
         iv_moyu_share = itemView.findViewById(R.id.iv_moyu_share);
 
         fl_avatar_container = itemView.findViewById(R.id.fl_avatar_container);
+
+        ll_container = itemView.findViewById(R.id.ll_container);
 
 
 

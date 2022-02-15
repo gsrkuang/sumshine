@@ -3,6 +3,7 @@ package com.colin.sunshine.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -86,7 +87,7 @@ public class RvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
             holder.tv_moyu_item_desc.setText("来自" +mDatas.get(position).company + " @" +mDatas.get(position).position +" " +mDatas.get(position).createTime);
 
-            holder.tv_moyu_item_content.setTextIsSelectable(true); //设置可选
+//            holder.tv_moyu_item_content.setTextIsSelectable(true); //设置可选
 
             Glide.with(holder.itemView)
                     .load(mDatas.get(position).avatar)
@@ -120,13 +121,43 @@ public class RvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             }
 
 
-            holder.tv_moyu_item_content.setOnClickListener(new View.OnClickListener() {
+//            holder.tv_moyu_item_content.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    //跳转到摸鱼详情页Activity
+//                    Intent intent = new Intent(mContext, MoyuDetailActivity.class);
+//                    intent.putExtra("MoyuListBean",mDatas.get(position_tag));
+//                    mContext.startActivity(intent);
+//                }
+//            });
+
+            holder.ll_container.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     //跳转到摸鱼详情页Activity
                     Intent intent = new Intent(mContext, MoyuDetailActivity.class);
                     intent.putExtra("MoyuListBean",mDatas.get(position_tag));
                     mContext.startActivity(intent);
+                }
+            });
+            holder.simple_grid_rvlayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //跳转到摸鱼详情页Activity
+                    Intent intent = new Intent(mContext, MoyuDetailActivity.class);
+                    intent.putExtra("MoyuListBean",mDatas.get(position_tag));
+                    mContext.startActivity(intent);
+                }
+            });
+            holder.simple_grid_rvlayout.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    if (event.getAction() == MotionEvent.ACTION_UP) {
+                        holder.simple_grid_rvlayout.performClick();//模拟父控件的点击
+
+                    }
+                    return false;
+
                 }
             });
 

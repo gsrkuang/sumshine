@@ -7,6 +7,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.colin.sunshine.R;
@@ -38,6 +39,8 @@ public class MoyuDetailCommentViewHolder extends RecyclerView.ViewHolder {
 
     public LinearLayout tv_build_reply_msg_container;
 
+    public ConstraintLayout cl_container;
+
     public MoyuDetailCommentViewHolder(@NonNull View itemView) {
         super(itemView);
         iv_moyu_detail_avatar = itemView.findViewById(R.id.iv_moyu_detail_avatar);
@@ -48,6 +51,7 @@ public class MoyuDetailCommentViewHolder extends RecyclerView.ViewHolder {
         tv_child_reply_msg1 = itemView.findViewById(R.id.tv_child_reply_msg1);
         tv_child_reply_msg_all = itemView.findViewById(R.id.tv_child_reply_msg_all);
         tv_build_reply_msg_container = itemView.findViewById(R.id.tv_build_reply_msg_container);
+        cl_container = itemView.findViewById(R.id.cl_container);
 
 
 

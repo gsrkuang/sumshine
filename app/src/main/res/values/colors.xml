@@ -5,6 +5,8 @@
     <color name="colorAccent">#F5A623</color>
     <color name="colorGrey">#7B7B7B</color>
 
+    <color name="colorSelected">#EEF1EE</color>
+
     <color name="colorTabSelected">#ffffff</color>
     <color name="colorTabNormal">#aaffffff</color>
     <color name="colorTmall">#D0021B</color>
@@ -15,6 +17,7 @@
 
     <color name="green">#2BA245</color>
 
+    <color name="white">#fff</color>
 
 
     <color name="black">#000</color>

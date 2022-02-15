@@ -12,7 +12,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.colin.sunshine.Constants;
@@ -41,8 +43,6 @@ import java.util.List;
  */
 public class MoyuDetailActivity extends AppCompatActivity {
 
-    private String id;
-
     private RecyclerView recyclerView;
     private SwipeRefreshLayout swipeRefreshLayout;
     private TextView tv_title;
@@ -52,6 +52,7 @@ public class MoyuDetailActivity extends AppCompatActivity {
     //摸鱼详情bean
     private MoyuDetailBean moyuDetailBean;
 
+    private ImageView title_bar_back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,12 +76,17 @@ public class MoyuDetailActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.rv_moyu_detail_comment);
         swipeRefreshLayout = findViewById(R.id.sl_moyu_refreshlayout);
         tv_title = findViewById(R.id.tv_title);
+        title_bar_back = findViewById(R.id.title_bar_back);
 
+        initSetText();
+    }
+    private void initSetText(){
+
+        tv_title.setText(R.string.title_detail);
     }
 
     private void initIntentData() {
         moyuListBean = (MoyuListBean) getIntent().getSerializableExtra("MoyuListBean");
-
     }
 
     private void getHttpData() {
@@ -150,6 +156,14 @@ public class MoyuDetailActivity extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 getHttpData();
+            }
+        });
+
+
+        title_bar_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }

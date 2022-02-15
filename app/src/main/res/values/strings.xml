@@ -7,4 +7,8 @@
     <string name="text_my">我的</string>
 
     <string name="title_home">摸鱼</string>
+    <string name="title_detail">摸鱼详情</string>
+    <string name="title_detail_comment">评论</string>
+
+
 </resources>
