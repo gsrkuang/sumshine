@@ -5,6 +5,7 @@ package com.colin.sunshine;
  * Time:16:54
  * author:colin
  */
+
 public class Constants {
     //API访问路径
     public static String api_main = "https://api.sunofbeaches.com";

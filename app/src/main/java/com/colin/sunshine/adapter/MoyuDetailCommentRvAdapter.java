@@ -166,7 +166,8 @@ public class MoyuDetailCommentRvAdapter extends RecyclerView.Adapter {
 
             holder.cb_iv_moyu_detail_nick_name.setText(subCommentsBean.nickname);
             if (subCommentsBean.vip) {
-                holder.cb_iv_moyu_detail_nick_name.setTextColor(mContext.getResources().getColor(R.color.pink));
+                holder.cb_iv_moyu_detail_nick_name.setTextColor(mContext.getResources().getColor(R.color.colorVip));
+                holder.iv_moyu_detail_avatar.setVip(true);
             }
 
             holder.tv_moyu_detail_desc.setText(subCommentsBean.company + " " + subCommentsBean.createTime);

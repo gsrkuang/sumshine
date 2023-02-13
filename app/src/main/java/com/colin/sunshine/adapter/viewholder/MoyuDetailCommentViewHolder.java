@@ -11,6 +11,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.colin.sunshine.R;
+import com.colin.sunshine.ui.view.CircleImageView;
 
 import org.w3c.dom.Text;
 
@@ -22,7 +23,7 @@ import org.w3c.dom.Text;
 public class MoyuDetailCommentViewHolder extends RecyclerView.ViewHolder {
 
     //评论用户头像
-    public ImageView iv_moyu_detail_avatar;
+    public CircleImageView iv_moyu_detail_avatar;
     //评论用户昵称
     public CheckBox cb_iv_moyu_detail_nick_name;
     //评论用户描述
@@ -52,9 +53,6 @@ public class MoyuDetailCommentViewHolder extends RecyclerView.ViewHolder {
         tv_child_reply_msg_all = itemView.findViewById(R.id.tv_child_reply_msg_all);
         tv_build_reply_msg_container = itemView.findViewById(R.id.tv_build_reply_msg_container);
         cl_container = itemView.findViewById(R.id.cl_container);
-
-
-
 
     }
 }

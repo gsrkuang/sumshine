@@ -161,7 +161,8 @@ public class MoyuDetailRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
             holder.cb_iv_moyu_detail_nick_name.setText(mDatas.get(postionComment).nickname);
             if (mDatas.get(postionComment).vip){
-                holder.cb_iv_moyu_detail_nick_name.setTextColor(mContext.getResources().getColor(R.color.pink));
+                holder.cb_iv_moyu_detail_nick_name.setTextColor(mContext.getResources().getColor(R.color.colorVip));
+                holder.iv_moyu_detail_avatar.setVip(true);
             }
 
 

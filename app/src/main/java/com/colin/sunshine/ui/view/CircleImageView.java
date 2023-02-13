@@ -6,10 +6,8 @@ import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -99,7 +97,6 @@ public class CircleImageView extends ImageView {
 
             mPaint.setShader(bitmapShader);
 
-
             //画圆形，指定好坐标，半径，画笔
             canvas.drawCircle(mRadius, mRadius, mRadiusLine, mPaint);
 
@@ -110,7 +107,7 @@ public class CircleImageView extends ImageView {
                 p.setStrokeWidth(10);
 //            p.setStrokeWidth(2.0f);
 //                p.setColor(getResources().getColor(R.color.pink));
-                p.setColor(getResources().getColor(R.color.green));
+                p.setColor(getResources().getColor(R.color.colorVip));
                 canvas.drawCircle(mRadius, mRadius, mRadiusLine, p);
 
             }

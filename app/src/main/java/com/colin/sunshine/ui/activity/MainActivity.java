@@ -35,20 +35,24 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        Window window = getWindow();
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.setStatusBarColor(getResources().getColor(R.color.common_confirm_text_color));
+
 //        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         //使得状态栏透明
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 
         initView();
         initFragment();
         initListener();
     }
 
-public void initView(){
-    mNavigationView = findViewById(R.id.main_navigation_bar);
-}
+    public void initView(){
+        mNavigationView = findViewById(R.id.main_navigation_bar);
+    }
 
     //初始化Fragment
     public void initFragment(){

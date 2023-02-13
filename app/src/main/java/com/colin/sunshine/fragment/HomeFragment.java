@@ -165,7 +165,6 @@ public class HomeFragment extends Fragment {
                     }
                 });
 
-
             }
 
             @Override
@@ -182,8 +181,6 @@ public class HomeFragment extends Fragment {
             JSONObject jsonObject1 = jsonObject.getJSONObject("data");
             Gson gson = new Gson();
             moyuBean = gson.fromJson(jsonObject1.toString(), MoyuBean.class);
-
-
             System.out.println("json->obj:" + moyuBean.toString());
 
             return moyuBean;

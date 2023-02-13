@@ -2,6 +2,7 @@ package com.colin.sunshine.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -75,7 +76,7 @@ public class RvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 //设置用户头像VIP
                 holder.iv_moyu_item_avatar.setVip(true);
                 //设置用户昵称VIP
-                holder.tv_moyu_item_nick_name.setTextColor(mContext.getResources().getColor(R.color.pink));
+                holder.tv_moyu_item_nick_name.setTextColor(mContext.getResources().getColor(R.color.colorVip));
             }else {
                 holder.iv_moyu_item_avatar.setVip(false);
                 holder.tv_moyu_item_nick_name.setTextColor(mContext.getResources().getColor(R.color.black));
@@ -83,7 +84,10 @@ public class RvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 //            holder.tv_moyu_item_content.setText(mDatas.get(position).content);
 
-            holder.tv_moyu_item_content.setText(HtmlCompat.fromHtml(mDatas.get(position).content,HtmlCompat.FROM_HTML_MODE_LEGACY));
+            String textStr = mDatas.get(position).content;
+
+
+            holder.tv_moyu_item_content.setText(Html.fromHtml(textStr));
 
             holder.tv_moyu_item_desc.setText("来自" +mDatas.get(position).company + " @" +mDatas.get(position).position +" " +mDatas.get(position).createTime);
 

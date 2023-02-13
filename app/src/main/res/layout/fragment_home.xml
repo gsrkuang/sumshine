@@ -28,8 +28,6 @@
     android:orientation="vertical"
     android:id="@+id/sl_moyu_refreshlayout">
 
-
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_moyu_detail"
         android:layout_width="match_parent"
